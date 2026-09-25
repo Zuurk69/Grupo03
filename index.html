@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GAMEZONE | Tienda de Videojuegos</title>
+
+    <style>
+        /* =========================================================
+           CONFIGURACIÓN GENERAL
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080b14;
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* =========================================================
+           BARRA SUPERIOR
+        ========================================================= */
+
+        .top-bar {
+            background: #05070d;
+            color: #aeb5c7;
+            padding: 9px 6%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            border-bottom: 1px solid #181d2c;
+        }
+
+        .top-bar span {
+            color: #00eaff;
+        }
+
+        /* =========================================================
+           NAVBAR
+        ========================================================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(8, 11, 20, 0.96);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid #1d2335;
+        }
+
+        .navbar {
+            min-height: 75px;
+            padding: 0 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: white;
+        }
+
+        .logo span {
+            color: #00eaff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #d8dcea;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00eaff;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #111624;
+            border: 1px solid #252d42;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .search-box input {
+            width: 180px;
+            padding: 11px;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: white;
+        }
+
+        .search-box button {
+            padding: 10px 13px;
+            background: transparent;
+            border: none;
+            color: #00eaff;
+            cursor: pointer;
+        }
+
+        .cart-button {
+            position: relative;
+            border: 1px solid #283149;
+            background: #111624;
+            color: white;
+            padding: 11px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff315f;
+            width: 21px;
+            height: 21px;
+            border-radius: 50%;
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            min-height: 580px;
+            display: flex;
+            align-items: center;
+            padding: 70px 8%;
+            position: relative;
+            overflow: hidden;
+
+            background:
+                linear-gradient(90deg, #080b14 5%, rgba(8,11,20,.82) 42%, rgba(8,11,20,.20)),
+                url("https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1800&q=90");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-label {
+            display: inline-block;
+            background: rgba(0, 234, 255, 0.12);
+            color: #00eaff;
+            border: 1px solid #00eaff;
+            padding: 8px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 6vw, 78px);
+            line-height: .95;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #00eaff;
+        }
+
+        .hero p {
+            color: #c3c9d8;
+            line-height: 1.7;
+            font-size: 17px;
+            margin-bottom: 30px;
+            max-width: 580px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #00eaff;
+            color: #02050b;
+            padding: 14px 25px;
+            border-radius: 7px;
+            font-weight: 900;
+            border: none;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,234,255,.25);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,.07);
+            border: 1px solid #4b566e;
+            color: white;
+            padding: 14px 25px;
+            border-radius: 7px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* =========================================================
+           ESTADÍSTICAS
+        ========================================================= */
+
+        .stats {
+            background: #0d111d;
+            padding: 22px 8%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-bottom: 1px solid #1d2335;
+        }
+
+        .stat {
+            text-align: center;
+            border-right: 1px solid #242b3d;
+        }
+
+        .stat:last-child {
+            border: none;
+        }
+
+        .stat h3 {
+            color: #00eaff;
+            font-size: 25px;
+        }
+
+        .stat p {
+            color: #9299aa;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        /* =========================================================
+           CONTENEDOR
+        ========================================================= */
+
+        .container {
+            width: 88%;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        section {
+            padding: 75px 0;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+        }
+
+        .section-title p {
+            color: #838b9e;
+            margin-top: 8px;
+        }
+
+        .view-all {
+            color: #00eaff;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* =========================================================
+           CATEGORÍAS
+        ========================================================= */
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .category {
+            min-height: 170px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: end;
+            padding: 22px;
+            cursor: pointer;
+            transition: .3s;
+            border: 1px solid #252d42;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+            border-color: #00eaff;
+        }
+
+        .category::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,.9));
+        }
+
+        .category-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .category h3 {
+            font-size: 20px;
+        }
+
+        .category p {
+            color: #aab1c2;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .action {
+            background-image:
+                url("https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=700&q=80");
+        }
+
+        .rpg {
+            background-image:
+                url("https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=700&q=80");
+        }
+
+        .racing {
+            background-image:
+                url("https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=700&q=80");
+        }
+
+        .sports {
+            background-image:
+                url("https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=700&q=80");
+        }
+
+        /* =========================================================
+           FILTROS
+        ========================================================= */
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            background: #111624;
+            color: #aeb6c8;
+            border: 1px solid #293149;
+            padding: 10px 17px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #00eaff;
+            color: #02050b;
+            border-color: #00eaff;
+            font-weight: bold;
+        }
+
+        /* =========================================================
+           PRODUCTOS
+        ========================================================= */
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .product {
+            background: #101522;
+            border: 1px solid #222a3d;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: .3s;
+            position: relative;
+        }
+
+        .product:hover {
+            transform: translateY(-7px);
+            border-color: #00eaff;
+            box-shadow: 0 15px 35px rgba(0,0,0,.35);
+        }
+
+        .product-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #ff315f;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .platform {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,.75);
+            padding: 6px 9px;
+            border-radius: 5px;
+            font-size: 11px;
+            color: #ddd;
+        }
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .product-info h3 {
+            font-size: 18px;
+            margin-bottom: 7px;
+        }
+
+        .genre {
+            color: #8992a8;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 21px;
+            font-weight: 900;
+        }
+
+        .old-price {
+            color: #687085;
+            font-size: 12px;
+            text-decoration: line-through;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .add-btn {
+            border: none;
+            background: #00eaff;
+            color: #02050b;
+            width: 38px;
+            height: 38px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 21px;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .add-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* IMÁGENES DE PRODUCTOS */
+
+        .game1 {
+            background-image:
+                url("https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=700&q=85");
+        }
+
+        .game2 {
+            background-image:
+                url("https://images.unsplash.com/photo-1605901309584-818e25960a8f?auto=format&fit=crop&w=700&q=85");
+        }
+
+        .game3 {
+            background-image:
+                url("https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=700&q=85");
+        }
+
+        .game4 {
+            background-image:
+                url("https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=700&q=85");
+        }
+
+        .game5 {
+            background-image:
+                url("https://images.unsplash.com/photo-1603481546238-487240415921?auto=format&fit=crop&w=700&q=85");
+        }
+
+        .game6 {
+            background-image:
+                url("https://images.unsplash.com/photo-1547394765-185e1e68f34e?auto=format&fit=crop&w=700&q=85");
+        }
+
+        .game7 {
+            background-image:
+                url("https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=700&q=85");
+        }
+
+        .game8 {
+            background-image:
+                url("https://images.unsplash.com/photo-1592840496694-26d035b52b48?auto=format&fit=crop&w=700&q=85");
+        }
+
+        /* =========================================================
+           OFERTA
+        ========================================================= */
+
+        .offer {
+            border-radius: 16px;
+            padding: 50px;
+            background:
+                linear-gradient(90deg, rgba(0,234,255,.15), rgba(122,54,255,.15)),
+                #111624;
+            border: 1px solid #293149;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .offer h2 {
+            font-size: 37px;
+            margin-bottom: 10px;
+        }
+
+        .offer p {
+            color: #a6aec0;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .discount {
+            font-size: 60px;
+            font-weight: 900;
+            color: #00eaff;
+        }
+
+        /* =========================================================
+           NEWSLETTER
+        ========================================================= */
+
+        .newsletter {
+            text-align: center;
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .newsletter h2 {
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .newsletter p {
+            color: #8f98ab;
+            margin-bottom: 25px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 600px;
+            margin: auto;
+            background: #111624;
+            border: 1px solid #293149;
+            padding: 5px;
+            border-radius: 8px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 13px;
+        }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            background: #05070d;
+            border-top: 1px solid #1d2335;
+            padding: 55px 6% 25px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 18px;
+        }
+
+        .footer-column p {
+            color: #858da0;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 11px;
+            color: #858da0;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .footer-column li:hover {
+            color: #00eaff;
+        }
+
+        .footer-bottom {
+            padding-top: 25px;
+            border-top: 1px solid #1b2030;
+            display: flex;
+            justify-content: space-between;
+            color: #646c7d;
+            font-size: 12px;
+        }
+
+        /* =========================================================
+           CARRITO
+        ========================================================= */
+
+        .cart-panel {
+            position: fixed;
+            top: 0;
+            right: -430px;
+            width: 400px;
+            height: 100vh;
+            background: #0c101b;
+            border-left: 1px solid #293149;
+            z-index: 2000;
+            padding: 25px;
+            transition: .4s;
+            box-shadow: -20px 0 50px rgba(0,0,0,.4);
+        }
+
+        .cart-panel.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .close-cart {
+            border: none;
+            background: #1a2030;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            border-bottom: 1px solid #20283a;
+            padding: 15px 0;
+        }
+
+        .cart-item h4 {
+            margin-bottom: 5px;
+        }
+
+        .cart-item p {
+            color: #00eaff;
+            font-weight: bold;
+        }
+
+        .remove-item {
+            background: transparent;
+            border: none;
+            color: #ff315f;
+            cursor: pointer;
+        }
+
+        .cart-total {
+            border-top: 1px solid #293149;
+            margin-top: 20px;
+            padding-top: 20px;
+        }
+
+        .total-line {
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .checkout {
+            width: 100%;
+            padding: 14px;
+        }
+
+        .cart-empty {
+            color: #737c91;
+            text-align: center;
+            padding: 40px 10px;
+        }
+
+        /* =========================================================
+           TOAST
+        ========================================================= */
+
+        .toast {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #00eaff;
+            color: #02050b;
+            padding: 14px 20px;
+            border-radius: 7px;
+            font-weight: bold;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: .4s;
+            z-index: 3000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1000px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .top-bar {
+                display: none;
+            }
+
+            .navbar {
+                padding: 15px 5%;
+            }
+
+            .search-box {
+                display: none;
+            }
+
+            .hero {
+                min-height: 520px;
+                padding: 50px 6%;
+            }
+
+            .hero h1 {
+                font-size: 45px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .stat {
+                border: none;
+            }
+
+            .products,
+            .categories {
+                grid-template-columns: 1fr;
+            }
+
+            .offer {
+                padding: 30px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .discount {
+                font-size: 45px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .cart-panel {
+                width: 100%;
+                right: -100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================================
+         BARRA SUPERIOR
+    ========================================================== -->
+
+    <div class="top-bar">
+        <div>🎮 La tienda gamer que estabas buscando</div>
+        <div>Envío digital <span>GRATIS</span> en todos los juegos</div>
+    </div>
+
+
+    <!-- =========================================================
+         NAVBAR
+    ========================================================== -->
+
+    <header>
+
+        <nav class="navbar">
+
+            <a href="#" class="logo">
+                GAME<span>ZONE</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#juegos">Videojuegos</a></li>
+                <li><a href="#categorias">Categorías</a></li>
+                <li><a href="#ofertas">Ofertas</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+
+            <div class="nav-actions">
+
+                <div class="search-box">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Buscar juego..."
+                    >
+
+                    <button onclick="searchGames()">
+                        🔍
+                    </button>
+                </div>
+
+                <button class="cart-button" onclick="openCart()">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+
+    <section class="hero" id="inicio">
+
+        <div class="hero-content">
+
+            <span class="hero-label">
+                🔥 NUEVOS LANZAMIENTOS
+            </span>
+
+            <h1>
+                TU MUNDO<br>
+                <span>GAMER</span>
+            </h1>
+
+            <p>
+                Descubre los mejores videojuegos, títulos exclusivos,
+                grandes ofertas y experiencias increíbles para llevar
+                tu pasión por los videojuegos al siguiente nivel.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#juegos" class="btn-primary">
+                    🛒 Comprar ahora
+                </a>
+
+                <a href="#categorias" class="btn-secondary">
+                    Explorar juegos
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         ESTADÍSTICAS
+    ========================================================== -->
+
+    <div class="stats">
+
+        <div class="stat">
+            <h3>+500</h3>
+            <p>Videojuegos</p>
+        </div>
+
+        <div class="stat">
+            <h3>+20K</h3>
+            <p>Clientes</p>
+        </div>
+
+        <div class="stat">
+            <h3>24/7</h3>
+            <p>Soporte</p>
+        </div>
+
+        <div class="stat">
+            <h3>100%</h3>
+            <p>Productos digitales</p>
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         CATEGORÍAS
+    ========================================================== -->
+
+    <section id="categorias">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <div>
+                    <h2>Explora categorías</h2>
+                    <p>Encuentra tu próximo videojuego favorito.</p>
+                </div>
+
+            </div>
+
+
+            <div class="categories">
+
+                <div class="category action">
+                    <div class="category-content">
+                        <h3>Acción</h3>
+                        <p>+120 juegos</p>
+                    </div>
+                </div>
+
+                <div class="category rpg">
+                    <div class="category-content">
+                        <h3>RPG</h3>
+                        <p>+90 juegos</p>
+                    </div>
+                </div>
+
+                <div class="category racing">
+                    <div class="category-content">
+                        <h3>Carreras</h3>
+                        <p>+65 juegos</p>
+                    </div>
+                </div>
+
+                <div class="category sports">
+                    <div class="category-content">
+                        <h3>Deportes</h3>
+                        <p>+80 juegos</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         PRODUCTOS
+    ========================================================== -->
+
+    <section id="juegos">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <div>
+                    <h2>Videojuegos destacados</h2>
+                    <p>Los títulos más buscados de nuestra tienda.</p>
+                </div>
+
+                <span class="view-all">
+                    Ver todos →
+                </span>
+
+            </div>
+
+
+            <!-- FILTROS -->
+
+            <div class="filters">
+
+                <button
+                    class="filter-btn active"
+                    onclick="filterGames('todos', this)"
+                >
+                    Todos
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterGames('accion', this)"
+                >
+                    Acción
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterGames('rpg', this)"
+                >
+                    RPG
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterGames('carreras', this)"
+                >
+                    Carreras
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterGames('deportes', this)"
+                >
+                    Deportes
+                </button>
+
+            </div>
+
+
+            <!-- PRODUCTOS -->
+
+            <div class="products" id="products">
+
+
+                <!-- PRODUCTO 1 -->
+
+                <article class="product" data-category="accion">
+
+                    <div class="product-image game1">
+
+                        <span class="badge">
+                            -25%
+                        </span>
+
+                        <span class="platform">
+                            PC / PS5
+                        </span>
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Cyber Warriors</h3>
+
+                        <p class="genre">
+                            Acción • Aventura
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <div>
+                                <span class="old-price">
+                                    S/ 199.90
+                                </span>
+
+                                <span class="price">
+                                    S/ 149.90
+                                </span>
+                            </div>
+
+                            <button
+                                class="add-btn"
+                                onclick="addToCart('Cyber Warriors', 149.90)"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCTO 2 -->
+
+                <article class="product" data-category="rpg">
+
+                    <div class="product-image game2">
+
+                        <span class="badge">
+                            NUEVO
+                        </span>
+
+                        <span class="platform">
+                            PC / Xbox
+                        </span>
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Dark Kingdom</h3>
+
+                        <p class="genre">
+                            RPG • Fantasía
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <div>
+
+                                <span class="price">
+                                    S/ 179.90
+                                </span>
+
+                            </div>
+
+                            <button
+                                class="add-btn"
+                                onclick="addToCart('Dark Kingdom', 179.90)"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCTO 3 -->
+
+                <article class="product" data-category="carreras">
+
+                    <div class="product-image game3">
+
+                        <span class="badge">
+                            -30%
+                        </span>
+
+                        <span class="platform">
+                            PS5 / Xbox
+                        </span>
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Street Racing X</h3>
+
+                        <p class="genre">
+                            Carreras • Arcade
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <div>
+
+                                <span class="old-price">
+                                    S/ 189.90
+                                </span>
+
+                                <span class="price">
+                                    S/ 132.90
+                                </span>
+
+                            </div>
+
+                            <button
+                                class="add-btn"
+                                onclick="addToCart('Street Racing X', 132.90)"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCTO 4 -->
+
+                <article class="product" data-category="deportes">
+
+                    <div class="product-image game4">
+
+                        <span class="badge">
+                            HOT
+                        </span>
+
+                        <span class="platform">
+                            PC / PS5
+                        </span>
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Football Champions</h3>
+
+                        <p class="genre">
+                            Deportes • Fútbol
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <div>
+
+                                <span class="price">
+                                    S/ 159.90
+                                </span>
+
+                            </div>
+
+                            <button
+                                class="add-btn"
+                                onclick="addToCart('Football Champions', 159.90)"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCTO 5 -->
+
+                <article class="product" data-category="accion">
+
+                    <div class="product-image game5">
+
+                        <span class="badge">
+                            -20%
+                        </span>
+
+                        <span class="platform">
+                            PC
+                        </span>
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Battle Zone</h3>
+
+                        <p class="genre">
+                            Acción • Shooter
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <div>
+
+                                <span class="old-price">
+                                    S/ 149.90
+                                </span>
+
+                                <span class="price">
+                                    S/ 119.90
+                                </span>
+
+                            </div>
+
+                            <button
+                                class="add-btn"
+                                onclick="addToCart('Battle Zone', 119.90)"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCTO 6 -->
+
+                <article class="product" data-category="rpg">
+
+                    <div class="product-image game6">
+
+                        <span class="badge">
+                            NUEVO
+                        </span>
+
+                        <span class="platform">
+                            PC / PS5
+                        </span>
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Legends of Heroes</h3>
+
+                        <p class="genre">
+                            RPG • Aventura
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <div>
+
+                                <span class="price">
+                                    S/ 199.90
+                                </span>
+
+                            </div>
+
+                            <button
+                                class="add-btn"
+                                onclick="addToCart('Legends of Heroes', 199.90)"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCTO 7 -->
+
+                <article class="product" data-category="carreras">
+
+                    <div class="product-image game7">
+
+                        <span class="badge">
+                            -35%
+                        </span>
+
+                        <span class="platform">
+                            PC / Xbox
+                        </span>
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Speed Revolution</h3>
+
+                        <p class="genre">
+                            Carreras • Simulación
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <div>
+
+                                <span class="old-price">
+                                    S/ 169.90
+                                </span>
+
+                                <span class="price">
+                                    S/ 109.90
+                                </span>
+
+                            </div>
+
+                            <button
+                                class="add-btn"
+                                onclick="addToCart('Speed Revolution', 109.90)"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PRODUCTO 8 -->
+
+                <article class="product" data-category="deportes">
+
+                    <div class="product-image game8">
+
+                        <span class="badge">
+                            -15%
+                        </span>
+
+                        <span class="platform">
+                            PS5 / Xbox
+                        </span>
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>Basket Pro 2026</h3>
+
+                        <p class="genre">
+                            Deportes • Básquet
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <div>
+
+                                <span class="old-price">
+                                    S/ 149.90
+                                </span>
+
+                                <span class="price">
+                                    S/ 127.40
+                                </span>
+
+                            </div>
+
+                            <button
+                                class="add-btn"
+                                onclick="addToCart('Basket Pro 2026', 127.40)"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         OFERTA
+    ========================================================== -->
+
+    <section id="ofertas">
+
+        <div class="container">
+
+            <div class="offer">
+
+                <div>
+
+                    <h2>
+                        OFERTAS GAMER
+                    </h2>
+
+                    <p>
+                        Aprovecha nuestras promociones especiales.
+                        Compra tus videojuegos favoritos con descuentos
+                        exclusivos por tiempo limitado.
+                    </p>
+
+                    <br>
+
+                    <button
+                        class="btn-primary"
+                        onclick="showToast('¡Oferta aplicada!')"
+                    >
+                        Ver promociones
+                    </button>
+
+                </div>
+
+                <div class="discount">
+                    HASTA<br>
+                    50%
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         NEWSLETTER
+    ========================================================== -->
+
+    <section>
+
+        <div class="container">
+
+            <div class="newsletter">
+
+                <h2>
+                    Únete a GAMEZONE
+                </h2>
+
+                <p>
+                    Recibe novedades, nuevos lanzamientos y ofertas
+                    directamente en tu correo.
+                </p>
+
+                <form
+                    class="newsletter-form"
+                    onsubmit="subscribe(event)"
+                >
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Ingresa tu correo electrónico"
+                        required
+                    >
+
+                    <button class="btn-primary">
+                        Suscribirme
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer id="contacto">
+
+        <div class="footer-grid">
+
+            <div class="footer-column">
+
+                <h3 class="logo">
+                    GAME<span>ZONE</span>
+                </h3>
+
+                <p>
+                    Tu tienda virtual de videojuegos.
+                    Encuentra los mejores títulos para PC,
+                    PlayStation, Xbox y más.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Tienda</h3>
+
+                <ul>
+                    <li>Videojuegos</li>
+                    <li>Ofertas</li>
+                    <li>Novedades</li>
+                    <li>Más vendidos</li>
+                </ul>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Ayuda</h3>
+
+                <ul>
+                    <li>Preguntas frecuentes</li>
+                    <li>Soporte</li>
+                    <li>Formas de pago</li>
+                    <li>Políticas</li>
+                </ul>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Contacto</h3>
+
+                <ul>
+                    <li>📧 contacto@gamezone.com</li>
+                    <li>📱 +51 999 999 999</li>
+                    <li>📍 Lima, Perú</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 GAMEZONE. Todos los derechos reservados.
+            </span>
+
+            <span>
+                🎮 Gaming Store
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         CARRITO LATERAL
+    ========================================================== -->
+
+    <div class="cart-panel" id="cartPanel">
+
+        <div class="cart-header">
+
+            <h2>
+                🛒 Mi carrito
+            </h2>
+
+            <button
+                class="close-cart"
+                onclick="closeCart()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <div
+            class="cart-items"
+            id="cartItems"
+        >
+
+            <div class="cart-empty">
+                Tu carrito está vacío.
+            </div>
+
+        </div>
+
+
+        <div class="cart-total">
+
+            <div class="total-line">
+
+                <span>
+                    Total:
+                </span>
+
+                <span id="cartTotal">
+                    S/ 0.00
+                </span>
+
+            </div>
+
+            <button
+                class="btn-primary checkout"
+                onclick="checkout()"
+            >
+                Proceder al pago
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         NOTIFICACIÓN
+    ========================================================== -->
+
+    <div
+        class="toast"
+        id="toast"
+    >
+        Producto agregado
+    </div>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+        /* =====================================================
+           CARRITO
+        ===================================================== */
+
+        let cart = [];
+
+
+        function addToCart(name, price) {
+
+            cart.push({
+                name: name,
+                price: price
+            });
+
+            updateCart();
+
+            showToast(
+                name + " agregado al carrito"
+            );
+        }
+
+
+        function updateCart() {
+
+            const cartItems =
+                document.getElementById("cartItems");
+
+            const cartCount =
+                document.getElementById("cartCount");
+
+            const cartTotal =
+                document.getElementById("cartTotal");
+
+
+            cartCount.textContent = cart.length;
+
+
+            if (cart.length === 0) {
+
+                cartItems.innerHTML = `
+                    <div class="cart-empty">
+                        Tu carrito está vacío.
+                    </div>
+                `;
+
+                cartTotal.textContent = "S/ 0.00";
+
+                return;
+            }
+
+
+            let total = 0;
+
+
+            cartItems.innerHTML = "";
+
+
+            cart.forEach((item, index) => {
+
+                total += item.price;
+
+
+                cartItems.innerHTML += `
+
+                    <div class="cart-item">
+
+                        <div>
+
+                            <h4>
+                                ${item.name}
+                            </h4>
+
+                            <p>
+                                S/ ${item.price.toFixed(2)}
+                            </p>
+
+                        </div>
+
+                        <button
+                            class="remove-item"
+                            onclick="removeItem(${index})"
+                        >
+                            Eliminar
+                        </button>
+
+                    </div>
+
+                `;
+
+            });
+
+
+            cartTotal.textContent =
+                "S/ " + total.toFixed(2);
+        }
+
+
+        function removeItem(index) {
+
+            cart.splice(index, 1);
+
+            updateCart();
+
+            showToast(
+                "Producto eliminado"
+            );
+        }
+
+
+        function openCart() {
+
+            document
+                .getElementById("cartPanel")
+                .classList.add("open");
+        }
+
+
+        function closeCart() {
+
+            document
+                .getElementById("cartPanel")
+                .classList.remove("open");
+        }
+
+
+        /* =====================================================
+           NOTIFICACIÓN
+        ===================================================== */
+
+        function showToast(message) {
+
+            const toast =
+                document.getElementById("toast");
+
+            toast.textContent = message;
+
+            toast.classList.add("show");
+
+
+            setTimeout(() => {
+
+                toast.classList.remove("show");
+
+            }, 2500);
+        }
+
+
+        /* =====================================================
+           FILTRAR PRODUCTOS
+        ===================================================== */
+
+        function filterGames(category, button) {
+
+            const products =
+                document.querySelectorAll(".product");
+
+            const buttons =
+                document.querySelectorAll(".filter-btn");
+
+
+            buttons.forEach(btn => {
+
+                btn.classList.remove("active");
+
+            });
+
+
+            button.classList.add("active");
+
+
+            products.forEach(product => {
+
+                if (
+                    category === "todos" ||
+                    product.dataset.category === category
+                ) {
+
+                    product.style.display = "block";
+
+                } else {
+
+                    product.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+
+        /* =====================================================
+           BUSCADOR
+        ===================================================== */
+
+        function searchGames() {
+
+            const search =
+                document
+                    .getElementById("searchInput")
+                    .value
+                    .toLowerCase()
+                    .trim();
+
+
+            const products =
+                document.querySelectorAll(".product");
+
+
+            products.forEach(product => {
+
+                const name =
+                    product
+                        .querySelector("h3")
+                        .textContent
+                        .toLowerCase();
+
+
+                if (
+                    name.includes(search)
+                ) {
+
+                    product.style.display = "block";
+
+                } else {
+
+                    product.style.display = "none";
+
+                }
+
+            });
+
+
+            document
+                .getElementById("juegos")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+        }
+
+
+        /* =====================================================
+           BUSCAR AL PRESIONAR ENTER
+        ===================================================== */
+
+        document
+            .getElementById("searchInput")
+            .addEventListener("keyup", function(event) {
+
+                if (event.key === "Enter") {
+
+                    searchGames();
+
+                }
+
+            });
+
+
+        /* =====================================================
+           SUSCRIPCIÓN
+        ===================================================== */
+
+        function subscribe(event) {
+
+            event.preventDefault();
+
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value;
+
+
+            if (email !== "") {
+
+                showToast(
+                    "¡Gracias por suscribirte!"
+                );
+
+
+                document
+                    .getElementById("email")
+                    .value = "";
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CHECKOUT
+        ===================================================== */
+
+        function checkout() {
+
+            if (cart.length === 0) {
+
+                showToast(
+                    "Tu carrito está vacío"
+                );
+
+                return;
+            }
+
+
+            showToast(
+                "¡Compra preparada correctamente!"
+            );
+
+        }
+
+    </script>
+
+</body>
+</html>
